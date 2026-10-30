@@ -18,7 +18,12 @@ A few things from that piece (and the discussion under it) shaped this skill dir
 - Skipped review doesn't stay contained. One commenter described it as a **domino effect** — a junior trusts the AI, a senior trusts the junior, and unreviewed code reaches production with nobody who can actually explain it.
 - The fix isn't abandoning AI. It's using it as a **complement, not a substitute** — delegating the mechanical and mundane while staying the one who can own, explain, and fix what gets shipped.
 
-This tracks with the (still young, still mixed) research on "cognitive offloading" more broadly: effects seem to depend heavily on *how* AI gets used — passive accept-and-move-on looks the riskiest, while deliberate, structured use looks protective — and the clearest evidence so far comes from domains like medicine, where skills visibly dull within months of leaning on an assistant.
+This tracks with the (still young, still mixed) research on "cognitive offloading" more broadly: effects seem to depend heavily on *how* AI gets used — passive accept-and-move-on looks the riskiest, while deliberate, structured use looks protective — and the clearest evidence so far comes from domains like medicine, where skills visibly dull within months of leaning on an assistant. A randomized trial Anthropic published in 2026 found this directly in software: developers who leaned on AI assistance scored meaningfully lower on comprehension afterward than those who coded by hand, with the largest gap in debugging specifically — the exact skill needed to catch AI being wrong.
+
+Two more ideas, from later viewing rather than the original article, shaped the most recent additions:
+
+- A video on AI and learning retention made the case that using AI to summarize or draft creates a **"feeling of learning" without actual retention** — reading a clear explanation isn't the same as having the skill, the same way watching a skateboarding tutorial isn't the same as landing the trick yourself.
+- [Dr. Justin Sung's Confusion Compass Method](https://www.youtube.com/watch?v=nIABz0Z4IRA) reframes confusion as a *signal*, not a problem to rush past — the brain actively reconciling new information with what it already knows. His method: name the confusion precisely, write the question that would resolve it, then answer that question — rather than smoothing confusion over with an immediate answer.
 
 ## The Solution
 
@@ -26,10 +31,15 @@ Dev Mentor tries to keep the parts of engineering that AI makes easy to skip in 
 
 - **Type-calibrated friction** — a hint ladder for bug fixes, hands-off help for pattern-copy features, predict-before-reveal for genuinely new features, findings-capture for spikes. The friction goes where the skill actually lives, not everywhere evenly.
 - **Pressure-aware, not pressure-blind** — you set Light / Medium / Hard at the start of each ticket, and a kill-switch phrase overrides it instantly if a "medium" ticket turns into a crunch.
+- **Growth areas raise the ladder, not lower it** — if a ticket touches something already flagged in your profile as a growth area, the default hint-ladder depth leans deeper, regardless of stated pressure. The less solid you are on something, the less equipped you are to catch AI getting it wrong, so a known weak spot gets more engagement by default. The kill switch still overrides this instantly, same as everything else.
 - **PR review with teaching** — direct about actual defects, Socratic about design decisions, and closing with explicit learning points instead of a generic "LGTM."
 - **A memory that's actually yours** — a plain, human-readable profile file (`~/.claude/mentor-profile.md`) that tracks your stable goals once and your active growth areas as they're observed, decaying entries that you've since gotten clean on rather than holding them against you forever.
 - **Quiz me** — a knowledge check pulled from your own recent growth areas, not generic trivia.
 - **Documentation-grounded learnings** — when a learning point is actually about framework or library behavior, the skill links the specific official doc section (short quote, clearly marked, full explanation in its own words) instead of asking you to take its word for it.
+- **Explains before it supplies** — even at the end of a hint ladder, the default is a conceptual explanation with you writing the actual fix, not a handed-over diff. Watching a fix land isn't the same as landing it yourself; the code only comes directly if you ask for it or hit the kill switch.
+- **A landing check before moving on** — "got it" isn't treated as proof of understanding, since that's the same feeling people get from a clear explanation that didn't actually stick. Closing out a bug-fix or from-scratch-feature ladder asks for a one-line restate in your own words first — not a quiz, just "say it back to me" before that part of the ticket is considered closed.
+- **Confusion gets named before it gets hinted away** — before any hint, the mentor asks what exactly is confusing you and what question would resolve it. Often just articulating the question resolves it on its own; when it doesn't, the next hint targets that specific question instead of a generic nudge. *Added after the Confusion Compass Method — confusion as a signal worth structuring, not a problem to smooth over.*
+- **`/struggle`** — a hands-on exercise pulled from your own active growth areas, not a generic coding challenge. You actually get stuck on it, and getting stuck is routed through the confusion-naming step above rather than an immediate answer. *Added to close the gap between "explained it" and "actually retained it" — the "feeling of learning" isn't the same as having the skill.*
 
 ## Installation
 
@@ -75,6 +85,11 @@ Once installed, just bring it a ticket:
 "Quiz me"
 → Pulls a question from something you've actually struggled with recently,
   not a random trivia question.
+
+"/struggle"
+→ Gives you a small, hands-on exercise pulled from your own growth areas.
+  Lets you actually get stuck, then works the confusion into a specific
+  question with you instead of just handing over the answer.
 
 "Just solve it, I don't have time for this right now"
 → Drops all friction immediately and helps directly, no hint ladder, no
